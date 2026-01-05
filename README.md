@@ -1,14 +1,9 @@
-# fuzzing_workshop_ndss
-Ambitous workshop paper!!!
+# Fuzzing with pattern mining
 
-Conference URL - https://www.ndss-symposium.org/ndss2026/submissions/cfp-fuzzing/
-
-Registered Papers URL - https://dl.acm.org/journal/tosem/registered-papers 
+Conference URL - https://conf.researchr.org/track/issta-2026/issta-2026-research-papers
 
 ## Rules
 
- - Registered report drafts should include no more than 8 pages, excluding references. There are no page limits on the references. The paper title must indicate the paper type, i.e., “[TITLE] (Registered Report)”.
+At the time of submission, each paper should have no more than 18 pages for all text and figures, plus unlimited references, using the following templates: Latex or Word (Mac) or Word (Windows). Authors using LaTeX should use the sample-acmsmall-conf.tex file (found in the samples folder of the acmart package) with the acmsmall option. We also strongly encourage the use of the review, screen, and anonymous options as well. In sum, you want to use:
 
-## Guidelines
-
- - https://www.ndss-symposium.org/ndss2026/submissions/call-for-papers/
+```\documentclass[acmsmall,screen,review,anonymous]{acmart}```
