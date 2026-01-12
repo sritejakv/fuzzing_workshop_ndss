@@ -1,49 +1,5 @@
-%%
-%% This is file `sample-acmsmall-conf.tex',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% samples.dtx  (with options: `all,proceedings,bibtex,acmsmall-conf')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from sample-acmsmall-conf.tex.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file samples.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
-%%
-%% Commands for TeXCount
-%TC:macro \cite [option:text,text]
-%TC:macro \citep [option:text,text]
-%TC:macro \citet [option:text,text]
-%TC:envir table 0 1
-%TC:envir table* 0 1
-%TC:envir tabular [ignore] word
-%TC:envir displaymath 0 word
-%TC:envir math 0 word
-%TC:envir comment 0 0
-%%
-%% The first command in your LaTeX source must be the \documentclass
-%% command.
-%%
-%% For submission and review of your manuscript please change the
-%% command to \documentclass[manuscript, screen, review]{acmart}.
-%%
-%% When submitting camera ready or to TAPS, please change the command
-%% to \documentclass[sigconf]{acmart} or whichever template is required
-%% for your publication.
-%%
-%%
+%% Page limit: 18 pages (incl. appendix, excl. data availability section and references) + unlimited references.
+%% Required section “Data Availability” (before references; does not count towards page limit)
 \documentclass[acmsmall,screen,review,anonymous]{acmart}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -105,12 +61,24 @@
 %% the next command will enable that style.
 %%\citestyle{acmauthoryear}
 
-\usepackage{todonotes}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
 \usepackage{acronym}
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{flushend}
+\usepackage{mdframed}
 
 \input{tex/utils/macros}
 
