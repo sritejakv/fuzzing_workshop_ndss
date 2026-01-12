@@ -1,7 +1,9 @@
 \section{Threats to Validity}
+\label{sec:threats}
 
 \begin{itemize}
     \item The impact of mutations is not considered as it is lots of data to collect
     \item Only based on AFL-based fuzzers
     \item Approach assumes edge coverage variants only. But, AFL's configuration considers edge coverage to compute interestingness of seeds
+    \item We only analyze the performance until one of the fuzzers reach saturation and discard the performance of rest of the fuzzers after the saturation time
 \end{itemize}
