@@ -6,7 +6,7 @@ In general, fuzzing can be represented as sequence of events that occur one afte
 
 \begin{figure}[!ht]
 	\centering
-    \includegraphics[clip, trim=0 0.2cm 0 0.2cm, width=0.9\columnwidth]{tex/assets/fuzzing_events.pdf}
+    \includegraphics[clip, trim=0 0.2cm 0 0.2cm, width=0.95\columnwidth]{tex/assets/fuzzing_events.pdf}
     \caption{Sequence of events in fuzzing loop.}
 	\label{fig:fuzzing_loop_events}
 \end{figure}
@@ -23,10 +23,30 @@ A fuzzer may go through all or may skip some of these events: \jazzer does not c
 For this work, we consider only the fuzzers that are based off of \afl \kts{cite!}, which is the most researched greybox fuzzer \kts{cite!} since its introduction to the academia and industry \kts{cite!}.
 
 \subsection{Fuzzing Internal Data}
-Such an representation of fuzzing enables us to define and capture the necessary data that corresponds to the fuzzing internals and use them to directly understand or evaluate the fuzzing internal mechanisms (\autoref{fig:greybox_fuzzing_process}).
+Such an representation of fuzzing process enables us to define the necessary data to understand or evaluate the fuzzing internal mechanisms (\autoref{fig:greybox_fuzzing_process}).
+\autoref{fig:fuzzing_loop_events} shows different internal data that can be captured but not limited to during fuzzing process in grey boxes below each event.
 
-\kts{Explain different data captured at different events!}
+During a \cycleevent, we can capture the cycle number and the duration of each cycle in the fuzzing campaign.
+At a \selectionevent, selection order and the search strategy type is logged.
+For example, \aflb selects seeds sequentially in the order which they are added into the seed queue \kts{cite!}, whereas
+\aflpp selects seeds either at random or based on its favored list of seeds from the seed queue \kts{cite!}.
 
+The energy (i.e., number of mutations) assigned to the selected seed and the power schedule type is captured at an \energyevent.
+In general, the type of power schedule is manually specified before the fuzzing campaign starts.
+To the best of our knowledge, there is no fuzzer that changes the power schedule type during the fuzzing process except for the two power schedules: explore and exploit.
+Modern fuzzers such as \aflpp uses a pre-defined time-threshold after which the fuzzer switches from explore (focuses on reaching more coverage) to exploit (focuses on exploiting crashes) power schedule \kts{cite!}.
+
+There are about 15 mutation operators in \afl-based fuzzers \cite{afl_mut_operators} and 32 mutation operators in \aflpp \cite{kitsios2025interactioneffectsgreyboxfuzzing}.
+Different mutation operators that are used to derive multiple mutations along with the mutation depth can be captured at \mutationevent.
+Most of the current fuzzing evaluation metrics such as coverage gain, execution time, time to expose a bug, etc., can be captured during \executionevent.
+
+At a \queueevent, one can capture the reason of adding a seed into the seed queue.
+\afl-based fuzzers adds a seed to the queue when one of the following four interesting runtime behaviors occur:
+increase in edge coverage, increase in edge hit count, long execution times (hang), or unsuccessful execution (crash).
+
+While the amount of internal data to be captured depends on the improvements made to the fuzzer in comparison to its baseline,
+in this work, we focus on extracting the internal data corresponding to the two most studied fuzzing internal mechanisms: search strategy and power schedule.
+\autoref{fig:fuzzing_loop_events} shows the corresponding internal data in grey boxes in \textbf{bold}.
 
 \subsection{Fuzzing (re-)Evaluation}
 
@@ -36,16 +56,65 @@ Recent study shows that a bug based bemchmark is not an efficient way to measure
 Evaluating fuzzing only in terms of coverage can only tell which fuzzer reaches more code in the target program.
 However, such an evaluation cannot clearly explain which of the internal fuzzing mechanisms actually led the fuzzer to reach more code during the fuzzing process.
 
-Hence, we propose some alternative evaluation metrics that can be easily derived from the fuzzing sequences and that are not based on the items captured during the \executionevent but are based on the \queueevent.
-It is already a well-known fact that when a seed or its mutation(s) trigger an interesting behavior, it is saved for future fuzzing cycles \kts{cite!}.
-We use this so called "interestingness", i.e., \emph{why a seed is added back to the seed queue and how many}, as a means to derive extended metrics to evaluate fuzzing internal mechanisms.
-Such as evaluation reveal contradicting insights, as we will see in \kts{Section?}, in comparison with just looking at reachable coverage during fuzzing process.
+Hence, we propose alternative evaluation metrics that are derived from the fuzzing sequence of events and that are not based on the items captured during the \executionevent but are based on the \queueevent.
+It is already a known-knowledge that when a seed or its mutation(s) trigger an interesting behavior, it is saved for future fuzzing cycles \kts{cite!}.
+We use this so called "interestingness" property of a seed, i.e., \emph{why a seed is added to the seed queue}, as a means to derive extended metrics to evaluate fuzzing internal mechanisms.
+Such as evaluation reveals contradicting insights, as we will see in \kts{Section?}, in comparison with just looking at reachable coverage during fuzzing process.
 
+\subsubsection{Evaluating Search Strategy}
 
-\begin{itemize}
-    \item Events for each of the fuzzing internal stage
-    \item Associating internal data to power schedule and search strategies
-    \item Explain different fuzzing events and the type of data that can be captured during each event
-    \item Use the "interestingness" as a means to derive evaluation metrics: why are seeds added back to the seed pool?
-    \item Derive new metrics to measure/understand power schedule and search strategies
-\end{itemize}
+According to the literature, a search strategy should aim at selecting a high quality seed from the queue that produces interesting behaviors.
+As we have already established that a fuzzer adds a seed to the queue if it is deemed interesting, we can extend the above definition as follows:
+
+% \textit{Definition 1.} A search strategy should aim at selecting a high quality seed from the queue \textit{that adds more interesting seeds back to the seed queue in each fuzzing cycle}.
+
+\begin{center}
+    \begin{tcolorbox}[colback=black!5!white,colframe=black!75!white,width=0.9\columnwidth,title=Extended Definition: Search Strategy]
+        A search strategy should aim at selecting a high quality seed from the queue \textit{that adds more interesting seeds back to the seed queue in each fuzzing cycle}.
+    \end{tcolorbox}
+\end{center}
+
+Based on the above extended definition, we define the following four evaluation metrics for search strategy:
+
+\textit{M1. \totalselectionyield} that is computed as the number of \queueevents across different selection orders in each fuzzing cycle.
+
+\textit{M2. \covselectionyield} is computed as the number of \queueevents that are due to increase in coverage across different selection orders in each fuzzing cycle.
+
+\textit{M3. \hitselectionyield} is the number of \queueevents that are due to increase in edge hit count across different selection orders in each fuzzing cycle.
+
+\textit{M4. \zeroselectionyield} is computed as the number of \selectionevents in the fuzzing loop that do not contain \queueevents, i.e., the underlying search strategy failed to select high quality seeds.
+
+Intuitively, a better search strategy should have low \zeroselectionyield and 
+depending on the strategy's aim it should either have higher \covselectionyield or \hitselectionyield in comparison to its counterpart or baseline.
+
+\subsubsection{Evaluating Power Schedule}
+
+According to the literature, a power schedule allocates more energy, i.e., more number of mutations, to high quality seeds with the aim to produce more interesting behaviors.
+Similar to the search strategy, we extend the above definition as follows:
+
+\begin{center}
+    \begin{tcolorbox}[colback=black!5!white,colframe=black!75!white,width=0.9\columnwidth,title=Extended Definition: Power Schedule]
+        A power schedule should aim at assigning more energy to a high quality seed in order to \textit{adds more interesting seeds back to the seed queue}.
+    \end{tcolorbox}
+\end{center}
+
+Based on the above extended definition, we define the following \kts{XX} evaluation metrics for power schedule:
+
+\textit{M5. \totalenergyyield} that is computed as the number of \queueevents across different \energyevents in each fuzzing cycle.
+
+\textit{M6. \covenergyyield} is computed as the number of \queueevents that are due to increase in coverage across different \energyevents.
+
+\textit{M7. \hitenergyyield} is the number of \queueevents that are due to increase in edge hit count across different \energyevents.
+
+\textit{M8. \zeroenergyyield} is computed as the number of \energyevents in the fuzzing loop that do not contain \queueevents, i.e., the number of wasted energy allocations by the underlying power schedule.
+
+In the above evaluation metrics, we only consider two most likely interesting behaviors due to which a fuzzer adds a seed to the queue: coverage and hit count.
+However, the metrics can be extended for the other interesting behaviors such as hang, crash, etc.
+
+% \begin{itemize}
+%     \item Events for each of the fuzzing internal stage
+%     \item Associating internal data to power schedule and search strategies
+%     \item Explain different fuzzing events and the type of data that can be captured during each event
+%     \item Use the "interestingness" as a means to derive evaluation metrics: why are seeds added back to the seed pool?
+%     \item Derive new metrics to measure/understand power schedule and search strategies
+% \end{itemize}
