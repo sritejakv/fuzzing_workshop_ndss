@@ -2,12 +2,44 @@
 \label{sec:fuzzing_events}
 
 In general, fuzzing can be represented as sequence of events that occur one after the other in a loop.
-At each of these events, we can capture some of the necessary data that can be used to directly understand or evaluate the fuzzing internal mechanisms \kts{cite the background figure}.
+\autoref{fig:fuzzing_loop_events} shows the \kts{XXX} events that commonly occur in greybox fuzzing.
 
-\kts{Figure ?} shows the \kts{XXX} events that commonly occur in coverage-guided greybox fuzzing.
-A fuzzer may go through all or may skip some of these events: 
-\jazzer does not contain \energyevent whereas \afl-based fuzzers contain all the events.
-For this work, we consider only the fuzzers that are developed on top up \afl, which is the most researched greybox fuzzer \kts{cite!}.
+\begin{figure}[!ht]
+	\centering
+    \includegraphics[clip, trim=0 0.2cm 0 0.2cm, width=0.9\columnwidth]{tex/assets/fuzzing_events.pdf}
+    \caption{Sequence of events in fuzzing loop.}
+	\label{fig:fuzzing_loop_events}
+\end{figure}
+
+A \cycleevent occurs when all the seeds in the seed queue are selected and executed during the fuzzing process.
+Typically, \afl performs all the events in the fuzzing loop, from seed selection to adding interesting seeds to the queue, multiple times until all the seeds in the seed queue are executed.
+During a \selectionevent, the underlying search strategy \kts{cite!} aims to select a seed from the seed queue that produces interesting behaviors.
+At the \energyevent, the power schedule assigns energy, i.e., number of times the selected seed shall be mutated, based on some heuristics \cite{zhao2024systematic}.
+Different mutation operators are then applied and multiple mutations are derived from the selected seed during a \mutationevent.
+All such derived mutations are executed on the target program and monitored for runtime behaviors during the \executionevent.
+All the derived mutations of the selected seed that produce some interesting behavior(s) (e.g., coverage gain, e.t.c) are added back to the seed queue for further fuzzing.
+
+A fuzzer may go through all or may skip some of these events: \jazzer does not contain \energyevent whereas \afl-based fuzzers contain all the events.
+For this work, we consider only the fuzzers that are based off of \afl \kts{cite!}, which is the most researched greybox fuzzer \kts{cite!} since its introduction to the academia and industry \kts{cite!}.
+
+\subsection{Fuzzing Internal Data}
+Such an representation of fuzzing enables us to define and capture the necessary data that corresponds to the fuzzing internals and use them to directly understand or evaluate the fuzzing internal mechanisms (\autoref{fig:greybox_fuzzing_process}).
+
+\kts{Explain different data captured at different events!}
+
+
+\subsection{Fuzzing (re-)Evaluation}
+
+Current fuzzing evaluations only focus on measuring the performance in terms of increase in coverage or the time taken to find the known bugs in a benchmark or new bugs in a target program (items in \executionevent).
+Recent study shows that a bug based bemchmark is not an efficient way to measure the fuzzing performance as \kts{write why?}.
+
+Evaluating fuzzing only in terms of coverage can only tell which fuzzer reaches more code in the target program.
+However, such an evaluation cannot clearly explain which of the internal fuzzing mechanisms actually led the fuzzer to reach more code during the fuzzing process.
+
+Hence, we propose some alternative evaluation metrics that can be easily derived from the fuzzing sequences and that are not based on the items captured during the \executionevent but are based on the \queueevent.
+It is already a well-known fact that when a seed or its mutation(s) trigger an interesting behavior, it is saved for future fuzzing cycles \kts{cite!}.
+We use this so called "interestingness", i.e., \emph{why a seed is added back to the seed queue and how many}, as a means to derive extended metrics to evaluate fuzzing internal mechanisms.
+Such as evaluation reveal contradicting insights, as we will see in \kts{Section?}, in comparison with just looking at reachable coverage during fuzzing process.
 
 
 \begin{itemize}
