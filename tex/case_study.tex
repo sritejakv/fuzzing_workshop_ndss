@@ -1,9 +1,15 @@
 \section{Case Studies}
 \label{sec:case_studies}
 
+We believe that there is no single fuzzer that can provide better performance across multiple target programs.
+Hence, in our evaluation, we say that fuzzer A is better than fuzzer B, when fuzzer A provides better performance on more number of targets than fuzzer B in our benchmark.
+
+In the following, we provide three \kts{XXX} studies which evaluate fuzzers using our proposed methodology \kts{cite!}, that why a seed is added back to the seed queue and how many of them instead of the traditional evaluation metrics that are based on some kind of coverage and bug finding capabilities \kts{cite!}.
+Specifically, we analyze the claims provided by the fuzzers and discuss if they deviate when evaluated through the lens of our methodology.
+
 \subsection{EcoFuzz}
 
-\ecofuzz \cite{eco_fuzz} modifies both the power schedule and the search strategy on top of \afl \kts{cite!}. 
+\ecofuzz \cite{eco_fuzz} modifies both the power schedule and the search strategy on top of \afl \cite{eco_fuzz}. 
 The authors claim that the search strategy selects next seed based on the reward probability and the power schedule aims at assigning energy based on the estimated number of mutation with the goal to reduce wasted mutations.
 
 

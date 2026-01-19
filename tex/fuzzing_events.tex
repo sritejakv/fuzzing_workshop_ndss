@@ -1,6 +1,15 @@
 \section{Representing Fuzzing as Sequence of Events}
 \label{sec:fuzzing_events}
 
+In general, fuzzing can be represented as sequence of events that occur one after the other in a loop.
+At each of these events, we can capture some of the necessary data that can be used to directly understand or evaluate the fuzzing internal mechanisms \kts{cite the background figure}.
+
+\kts{Figure ?} shows the \kts{XXX} events that commonly occur in coverage-guided greybox fuzzing.
+A fuzzer may go through all or may skip some of these events: 
+\jazzer does not contain \energyevent whereas \afl-based fuzzers contain all the events.
+For this work, we consider only the fuzzers that are developed on top up \afl, which is the most researched greybox fuzzer \kts{cite!}.
+
+
 \begin{itemize}
     \item Events for each of the fuzzing internal stage
     \item Associating internal data to power schedule and search strategies
