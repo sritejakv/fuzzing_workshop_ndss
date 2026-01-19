@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
   <diagram name="Page-1" id="vX1btOEaYi15D9omwOmz">
-    <mxGraphModel dx="1181" dy="706" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1496" dy="902" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -155,8 +155,8 @@
         <mxCell id="cWvoeRHkL8cS1YbrqiH5-47" value="&lt;ul&gt;&lt;li&gt;sequential&lt;/li&gt;&lt;li&gt;random&lt;/li&gt;&lt;li&gt;favored&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="153" y="570" width="110" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cWvoeRHkL8cS1YbrqiH5-55" value="&lt;ul&gt;&lt;li&gt;fast&lt;/li&gt;&lt;li&gt;explore&lt;/li&gt;&lt;li&gt;exploit&lt;/li&gt;&lt;li&gt;quad&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" parent="1" vertex="1">
-          <mxGeometry x="298" y="570" width="90" height="90" as="geometry" />
+        <mxCell id="cWvoeRHkL8cS1YbrqiH5-55" value="&lt;ul&gt;&lt;li&gt;fast&lt;/li&gt;&lt;li&gt;explore&lt;/li&gt;&lt;li&gt;exploit&lt;/li&gt;&lt;li&gt;entropic&lt;/li&gt;&lt;li&gt;quad&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="293" y="570" width="100" height="110" as="geometry" />
         </mxCell>
         <mxCell id="cWvoeRHkL8cS1YbrqiH5-56" value="&lt;ul&gt;&lt;li&gt;coverage&lt;/li&gt;&lt;li&gt;hit count&lt;/li&gt;&lt;li&gt;crash&lt;/li&gt;&lt;li&gt;hang&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="724" y="570" width="100" height="90" as="geometry" />
@@ -164,10 +164,10 @@
         <mxCell id="cWvoeRHkL8cS1YbrqiH5-57" value="Add interesting seeds&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;to the seed queue&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="315" y="380" width="240" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="xhi2ipv_FHSXFPiQ0xdH-1" value="&lt;ul&gt;&lt;li&gt;operator1&lt;/li&gt;&lt;li&gt;operator2&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" vertex="1" parent="1">
+        <mxCell id="xhi2ipv_FHSXFPiQ0xdH-1" value="&lt;ul&gt;&lt;li&gt;operator1&lt;/li&gt;&lt;li&gt;operator2&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="431.75" y="570" width="110" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="xhi2ipv_FHSXFPiQ0xdH-2" value="&lt;ul&gt;&lt;li&gt;execution time&lt;/li&gt;&lt;li&gt;coverage gain&lt;/li&gt;&lt;li&gt;bug(s) found&lt;/li&gt;&lt;li&gt;time to exposure&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" vertex="1" parent="1">
+        <mxCell id="xhi2ipv_FHSXFPiQ0xdH-2" value="&lt;ul&gt;&lt;li&gt;execution time&lt;/li&gt;&lt;li&gt;coverage gain&lt;/li&gt;&lt;li&gt;bug(s) found&lt;/li&gt;&lt;li&gt;time to exposure&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#6f6d6d, #ededed);fontSize=14;spacing=0;spacingLeft=-12;spacingTop=-12;spacingBottom=-12;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="558" y="570" width="150" height="90" as="geometry" />
         </mxCell>
       </root>
