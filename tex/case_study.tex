@@ -4,21 +4,24 @@
 We believe that there is no single fuzzer that can provide better performance across multiple target programs.
 Hence, in our evaluation, we say that fuzzer A is better than fuzzer B, when fuzzer A provides better performance on more number of targets than fuzzer B in our benchmark.
 
-In the following, we provide three \kts{XXX} studies which evaluate fuzzers using our proposed methodology \kts{cite!}, that why a seed is added back to the seed queue and how many of them instead of the traditional evaluation metrics that are based on some kind of coverage and bug finding capabilities \kts{cite!}.
-Specifically, we analyze the claims provided by the fuzzers and discuss if they deviate when evaluated through the lens of our methodology.
+In the following, we discuss three case studies which evaluate fuzzers using our proposed metrics (\sectionsubref{sec:fuzzing_reeval}) based on \textit{why a seed is added to the seed queue} instead of the traditional evaluation metrics that are based on coverage and bug finding capabilities \kts{cite!}.
+Specifically, we analyze the claims provided by the fuzzers and discuss if they deviate when evaluated through the lens of our methodology - \kts{remove this sentence?}.
+
+Our benchmark contains \kts{XX} programs that are part of FuzzBench~\cite{fuzzbench}.
+In total, FuzzBench contains 28 programs out of which six are bug-based benchmark programs and the rest 22 are bug-based benchmark programs. 
+Evaluating on all the 22 programs is computationally intensive: according to Schloegel et al., fuzzers in top conferences are evaluated on average using 8.9 programs \cite{schloegel2024sok}.
+To avoid biasing in program selection, we comprise our benchmark based on the previous fuzzing papers that uses FuzzBench in their evaluation \kts{which ones and explain why others are not part of the benchmark?}.
 
 \kts{Why did we only consider power schedule and search strategy improvements and why not mutations too - cite Marcel's work on mutations interactions to argue?}
 
 \subsection{EcoFuzz}
 
 \ecofuzz \cite{eco_fuzz} modifies both the power schedule and the search strategy on top of \afl \cite{eco_fuzz}. 
-The authors claim that the search strategy selects next seed based on the reward probability and the power schedule aims at assigning energy based on the estimated number of mutation with the goal to reduce wasted mutations.
+The authors claim that the search strategy selects next seed based on the reward probability and the power schedule aims at assigning energy based on the estimated number of mutation with the goal to reduce wasted mutations, i.e., low \zeroenergyyield.
 
 
 \subsection{AFLFast}
-
-\subsection{MoPT}
+\subsubsection{Fast vs. \afl}
+\subsubsection{Multiple Power Schedules}
 
 \subsection{FairFuzz}
-
-\subsection{Multiple Trials}
