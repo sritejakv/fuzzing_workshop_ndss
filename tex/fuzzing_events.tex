@@ -46,9 +46,10 @@ increase in edge coverage, increase in edge hit count, long execution times (han
 
 While the amount of internal data to be captured depends on the improvements made to the fuzzer in comparison to its baseline,
 in this work, we focus on extracting the internal data corresponding to the two most studied fuzzing internal mechanisms: search strategy and power schedule.
-\autoref{fig:fuzzing_loop_events} shows the corresponding internal data in grey boxes in \textbf{bold}.
+\autoref{fig:fuzzing_loop_events} shows the corresponding internal data in grey boxes in \textcolor{gray}{\textbf{bold}}.
 
 \subsection{Fuzzing (re-)Evaluation}
+\label{sec:fuzzing_reeval}
 
 Current fuzzing evaluations only focus on measuring the performance in terms of increase in coverage or the time taken to find the known bugs in a benchmark or new bugs in a target program (items in \executionevent).
 Recent study shows that a bug based bemchmark is not an efficient way to measure the fuzzing performance as \kts{write why?}.
