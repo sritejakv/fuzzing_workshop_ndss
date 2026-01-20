@@ -19,14 +19,26 @@ To avoid biasing in program selection, we comprise our benchmark based on the pr
 
 \kts{Why did we only consider power schedule and search strategy improvements and why not mutations too - cite Marcel's work on mutations interactions to argue?}
 
+\subsection{AFLFast}
+
+\aflfast introduces six power schedules and a search strategy on top of \aflone \cite{aflfast}.
+According to the authors, \aflfast's power schedules assign more energy to the seeds that executes quickly, covers more code, and is generated later in the fuzzing process;
+\aflfast's search strategy prioritizes seeds on how rarely they've been selected from the seed queue and how infrequently their paths have been fuzzed.
+To evaluate \aflfast, we use \aflb as the baseline: \aflb has no notion of power schedule and it simply uses round-robin queue order to select seeds.
+
+\subsubsection{Fast vs. \afl}
+\textit{Fast} is the default power schedule in \aflfast.
+Hence, we first evaluate it against the baseline fuzzer, \aflb.
+
+\subsubsection{Multiple Power Schedules}
+Böhme et al., showed that \textit{Fast} power schedule outperforms other power schedules in terms of number of crashes found followed by \textit{Explore} and \textit{COE} (cut-off exploration).
+In this section, we compare these three power schedules in \aflfast using our methodology and discuss the deviating results.
+
 \subsection{EcoFuzz}
 
-\ecofuzz \cite{eco_fuzz} modifies both the power schedule and the search strategy on top of \afl \cite{eco_fuzz}. 
-The authors claim that the search strategy selects next seed based on the reward probability and the power schedule aims at assigning energy based on the estimated number of mutation with the goal to reduce wasted mutations, i.e., low \zeroenergyyield.
-
-
-\subsection{AFLFast}
-\subsubsection{Fast vs. \afl}
-\subsubsection{Multiple Power Schedules}
+\ecofuzz \cite{eco_fuzz} modifies both the power schedule and the search strategy on top of \afl. 
+The authors claim that the search strategy selects next seed based on the reward probability and the power schedule aims at assigning energy based on the estimated number of mutation with the goal to reduce wasted mutations.
 
 \subsection{FairFuzz}
+
+\subsection{\aflpp: Explore vs. Exploit}

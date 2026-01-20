@@ -101,15 +101,15 @@ Similar to the search strategy, we extend the above definition as follows:
 
 Based on the above extended definition, we define the following \kts{XX} evaluation metrics for power schedule:
 
-\textit{M5. \totalenergyyield} that is computed as the number of \queueevents across different \energyevents in each fuzzing cycle.
+\textit{M5. \totalenergyyield} that is computed as the ratio of energy allocated by the power schedule to the number of \queueevents until next \energyevent during the fuzzing process.
 
-\textit{M6. \covenergyyield} is computed as the number of \queueevents that are due to increase in coverage across different \energyevents.
+\textit{M6. \covenergyyield} is computed as the ratio of energy allocated by the power schedule to the number of \queueevents that are due to increase in coverage until next \energyevent during the fuzzing process.
 
-\textit{M7. \hitenergyyield} is the number of \queueevents that are due to increase in edge hit count across different \energyevents.
+\textit{M7. \hitenergyyield} is computed as the ratio of energy allocated by the power schedule to the number of \queueevents that are due to increase in edge hit count until next \energyevent during the fuzzing process.
 
-\textit{M8. \zeroenergyyield} is computed as the number of \energyevents in the fuzzing loop that do not contain \queueevents, i.e., the number of wasted energy allocations by the underlying power schedule.
+\textit{M8. \zeroenergyyield} is computed as the number of \energyevents in the fuzzing loop that do not contain any \queueevents, i.e., the number of wasted energy allocations by the underlying power schedule.
 
-In the above evaluation metrics, we only consider two most likely interesting behaviors due to which a fuzzer adds a seed to the queue: coverage and hit count.
+In the above evaluation metrics, we only consider the two most likely interesting behaviors due to which a fuzzer adds a seed to the queue: coverage and hit count.\footnote{In our experiments, we observed that the items queued due to other reasons are infinitesimally small in comparison to coverage and hit count.}
 However, the metrics can be extended for the other interesting behaviors such as hang, crash, etc.
 
 % \begin{itemize}
