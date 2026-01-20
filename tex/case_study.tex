@@ -1,6 +1,11 @@
 \section{Case Studies}
 \label{sec:case_studies}
 
+\begin{itemize}
+    \item Fuzzers reach saturation at some point which means there are not more coverage gains seed after this time point. So, in order to enable fair comparison we only consider the latest timepoint in which any of the evaluated fuzzers produce coverage gain as the end time of the fuzzing run. Such an assumption also does not add the unnecessary event sequences during the evaluation.
+    \item Configurations of all experiments: fuzzbench, number of trials, trial runtime, etc.
+\end{itemize}
+
 We believe that there is no single fuzzer that can provide better performance across multiple target programs.
 Hence, in our evaluation, we say that fuzzer A is better than fuzzer B, when fuzzer A provides better performance on more number of targets than fuzzer B in our benchmark.
 
